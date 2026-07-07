@@ -1,34 +1,20 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "6.39.0"
-    }
-  }
-  backend "s3" {
-    bucket = "demo-rohit-s3-backend"
-    key    = "path/to/my/key"
-    region = "ap-south-1"
-    use_lockfile = true
-  }
-}
+resource "aws_s3_bucket" "demo" {
+  bucket = var.bucket_name-${var.environment}
 
-provider "aws" {
-  # Configuration options
-  region = "ap-south-1"
-}
-
-resource "aws_instance" "ec2_instance" {
-  ami = "ami-05d2d839d4f73aafb"
-  instance_type = "t3.micro"
   tags = {
-    Name = "HelloWorld"
-    
+    Name        = "My bucket"
+    Environment = var.environment
   }
 }
 
-output "aws_instance" {
-  description = "Instance 0"
-  value = aws_instance.ec2_instance.id
+resource "aws_s3_bucket_versioning" "versioning_example" {
+  bucket = aws_s3_bucket.demo.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
 
+resource "aws_s3_bucket_acl" "example" {
+  bucket = aws_s3_bucket.demo.id
+  acl    = "private"
 }
