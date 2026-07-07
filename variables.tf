@@ -1,7 +1,7 @@
 variable "region" {
     description = "terraform region"
     type = string
-    default = "us-east-01"
+    default = "us-east-1"
 }
 
 variable "environment"{
