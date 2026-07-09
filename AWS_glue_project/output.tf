@@ -1,6 +1,6 @@
 output "glue_database" {
 
-  value = aws_glue_catalog_database.database.name
+  value = aws_glue_catalog_database.example.name
 
 }
 

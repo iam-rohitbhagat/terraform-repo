@@ -12,7 +12,7 @@ resource "aws_glue_job" "etl_job" {
 
   command {
 
-    script_location = "s3://${aws_s3_bucket.glue_bucket.bucket}/scripts/job.py"
+    script_location = "s3://${aws_s3_bucket.demo.bucket}/scripts/job.py"
 
     python_version = "3"
 
@@ -26,7 +26,7 @@ resource "aws_glue_job" "etl_job" {
 
     "--enable-continuous-cloudwatch-log" = "true"
 
-    "--TempDir" = "s3://${aws_s3_bucket.glue_bucket.bucket}/temp/"
+    "--TempDir" = "s3://${aws_s3_bucket.demo.bucket}/temp/"
 
   }
 
