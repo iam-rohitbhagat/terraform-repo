@@ -15,7 +15,6 @@ output "crawler" {
   value = aws_glue_crawler.crawler.name
 
 }
-
 #project_name = "data_Engineering"
 #environment = "dev"
 #bucket_name = "data_Engineering-data-lake"
